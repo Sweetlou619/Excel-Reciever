@@ -1,0 +1,68 @@
+﻿<Window x:Class="Excel_Retriever.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Title="" Height="591" Width="903">
+    <Grid Name="ExcelGrid" Visibility="Visible">
+        <!--<DataGrid Height="{Binding Height}" Width="{Binding Width}" AutoGenerateColumns="True" HorizontalAlignment="Left" Margin="10,10,0,0" Name="dataGrid1" VerticalAlignment="Top" />-->
+        <Canvas Visibility="Collapsed">
+            <telerik:RadChart x:Name="graph" Width="1" Height="1"/>
+            <telerik:RadChart x:Name="BubbleGraph" Width="1" Height="1"/>
+        </Canvas>
+        <Button Content="Combine Comments and Ratings" Click="CombineCommAndRatings_Click" Name="CombineBtn" IsEnabled="False" Margin="12,433,682,74" />
+        <Button Content="Export Bar Graphs" Click="ExportBarGraphs_Click" Name="ExportBtn" IsEnabled="False" Margin="12,375,682,134" />
+        <Button Content="Export Bubble Charts" Click="ExportBbubbleCharts_Click" Name="ExportBubbleBtn" IsEnabled="False" Margin="12,497,682,12" />
+        <Button Content="Import Beginning Excel Sheet" Click="ImportBeginSheet" Name="BeginSheetBtn" Margin="12,145,682,361" />
+        <Button Content="Import End Excel Sheet" Click="ImportEndSheet" Name="EndSheetBtn" Margin="12,313,682,192" />
+        <TextBlock Height="23" Name="LeftToExportText" Margin="213,395,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="182" />
+        <TextBlock Height="23" Name="CombineText" Margin="213,455,486,74" />
+        <TextBlock Height="23" Name="ExportBubbleText" Margin="213,517,486,12" />
+        <TextBlock Height="23" Name="BeginImportText" Margin="213,168,486,361" />
+        <TextBlock Height="23" Name="EndImportText" Margin="213,337,486,192" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,44,0,0" Name="ColumnBlockBegin" Text="How many columns with names are there?" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,76,0,0" Name="CompletelyBlockBegin" Text="What row is 'Completely' in?" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,207,0,0" Name="ColumnBlockEnd" Text="How many columns with names are there?" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,247,0,0" Name="CompletelyBlockEnd" Text="What row is 'Completely' in?" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,284,0,0" Name="NumNamesRowBlockEnd" Text="What row is the last name in?" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,105,0,0" Name="NumNamesRowBlockBegin" Text="What row is the last name in?" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="243,41,0,0" Name="NumColumnsBegin" VerticalAlignment="Top" Width="45" TabIndex="1"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="168,73,0,0" Name="CompletelyStartBegin" VerticalAlignment="Top" Width="45" TabIndex="1"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="174,102,0,0" Name="NumNamesRowBeginBox" VerticalAlignment="Top" Width="45" TabIndex="1"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="243,204,0,0" Name="NumColumnsEnd" VerticalAlignment="Top" Width="45" TabIndex="1"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="168,244,0,0" Name="CompletelyStartEnd" VerticalAlignment="Top" Width="45" TabIndex="1"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="174,281,0,0" Name="NumNamesRowEndBox" VerticalAlignment="Top" Width="45" TabIndex="1"/>
+        <CheckBox Content="Importing Two Graphs" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="ImportTwoGraphs" VerticalAlignment="Top" Width="152" Checked="ImportTwoChecked" Unchecked="ImportTwoUnchecked" />
+        <CheckBox Content="Disable 'Name' message box" Height="28" HorizontalAlignment="Left" Margin="186,12,0,0" Name="DisableNameBox" VerticalAlignment="Top" Width="181" Checked="DisableNameChecked" Unchecked="DisableNameUnchecked" />
+        <!--<telerik:RadCartesianChart HorizontalAlignment="Left" Margin="12,36,0,0" Name="radCartesianChart1" VerticalAlignment="Top" Height="263" Width="479">
+            <telerik:RadCartesianChart.Grid>
+                <telerik:CartesianChartGrid StripLinesVisibility="Y">
+                    <telerik:CartesianChartGrid.YStripeBrushes>
+                        <SolidColorBrush Color="#FFD7D7D7" Opacity="0.3" />
+                        <SolidColorBrush Color="Transparent" />
+                    </telerik:CartesianChartGrid.YStripeBrushes>
+                </telerik:CartesianChartGrid>
+            </telerik:RadCartesianChart.Grid>
+            <telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:CategoricalAxis />
+            </telerik:RadCartesianChart.HorizontalAxis>
+            <telerik:RadCartesianChart.VerticalAxis>
+                <telerik:LinearAxis />
+            </telerik:RadCartesianChart.VerticalAxis>
+            <telerik:BarSeries>
+                <telerik:BarSeries.DataPoints>
+                    <telerik:CategoricalDataPoint Category="Completely" x:Name="CompletelyPoint" />
+                    <telerik:CategoricalDataPoint Category="Very" x:Name="VeryPoint" />
+                    <telerik:CategoricalDataPoint Category="Moderately" x:Name="ModeratelyPoint" />
+                    <telerik:CategoricalDataPoint Category="Somewhat" x:Name="SomewhatPoint" />
+                    <telerik:CategoricalDataPoint Category="Not at all" x:Name="NotAtAllPoint" />
+                    <telerik:CategoricalDataPoint Category="No Rating" x:Name="NoRatingPoint" />
+                </telerik:BarSeries.DataPoints>
+                <telerik:BarSeries.PointTemplate>
+                    <DataTemplate>
+                        <Rectangle Fill="#FF5AA4D4" />
+                    </DataTemplate>
+                </telerik:BarSeries.PointTemplate>
+            </telerik:BarSeries>
+        </telerik:RadCartesianChart>-->
+    </Grid>
+</Window>
